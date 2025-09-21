@@ -13,7 +13,7 @@ export class CardService{
         try{
             const card = await this.cardRepo.createCard(data);
             if(!card) throw new Error(`Forneça um card`);
-            return card;
+            return {Data: [card]};
         }catch(err){
             if(err instanceof Error){
                 throw new Error(`${err.message}`);
@@ -29,7 +29,7 @@ export class CardService{
             if(!find) throw new Error(`Id não existe ou card não existe`);
             const card = await this.cardRepo.updateCard(id, data);
             if(!card) throw new Error(`Forneça o card`);
-            return card;
+             return {Data: [card]};
         }catch(err){
             if(err instanceof Error){
                 throw new Error(`Error: ${err.message}`);
@@ -41,8 +41,22 @@ export class CardService{
     getCardByID = async(id: number): Promise<CardDtoResponse>=>{
         try{
             const card = await this.cardRepo.getCardById(id);
-            if(!id) throw new Error(`Forneça o id!`);
-            return card;
+            if(!id ||isNaN(id)) throw new Error(`Forneça o id!`);
+            return {Data: [card]};
+        }catch(err){
+            if(err instanceof Error){
+
+                throw new Error(`Error: ${err.message}`);
+            } 
+            throw err;
+        }
+    }
+
+    getAllCards = async(): Promise<CardDTO[]>=>{
+        try{
+            const card = await this.cardRepo.getAllCard();
+            if(card.length === 0) throw new Error(`Lista vazia!`);
+                return card;
         }catch(err){
             if(err instanceof Error){
 

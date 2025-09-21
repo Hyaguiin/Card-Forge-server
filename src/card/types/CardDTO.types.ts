@@ -1,3 +1,4 @@
+import { Card } from "../schema/CardEntity.schema";
 
 export type CardDTO = {
     id: number;
@@ -9,8 +10,5 @@ export type CardDTO = {
 
 
 export type CardDtoResponse = {
-    name: string;
-    attack: number;
-    defense: number;
-    image: string | null;
+    Data: CardDTO | CardDTO[];
 }

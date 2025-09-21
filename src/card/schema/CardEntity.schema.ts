@@ -1,26 +1,23 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-
 @Entity()
 export class Card {
 
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column('name')
-    name: string
+    @Column('varchar')
+    name: string;
 
-    @Column('attack')
+    @Column('int')
     attack: number;
 
-    @Column('defense')
+    @Column('int')
     defense: number;
 
-
-    @Column('image')
+    @Column({ type: 'varchar', nullable: true })
     image: string | null;
 
-
-    @Column({type: 'timestamp', default: ()=> 'CURRENT_TIMESTAMP'})
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
 }

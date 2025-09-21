@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import cors from "cors";
-import env from ".//.env/envalid.env"
+import env from './envClean/env.envalid';
 const port = env.PORT || 5000;
-const allowedDomainsSplit = env.ALLOWED_DOMAINS.split(",").map(domain => domain.trim());
+const allowedDomainsSplit = env.ALLOWED_DOMAINS.split(",").map(domains => domains.trim());
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const corsOptions = {
