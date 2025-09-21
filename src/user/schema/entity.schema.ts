@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from "typeorm";
+import { Card } from "src/card/schema/CardEntity.schema";
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -24,4 +25,8 @@ export class User {
 
   @Column({ type: 'boolean', default: false })
   isLogged: boolean;
+  
+  
+  @OneToMany(() => Card, card => card.user)
+  cards: Card[];
 }

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from "typeorm";
+import { User } from "src/user/schema/entity.schema";
 
 @Entity()
 export class Card {
@@ -20,4 +21,8 @@ export class Card {
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
+
+    @JoinColumn({name: 'userId'})
+    @OneToMany(()=> User, user => user.cards)
+    user: User;
 }
