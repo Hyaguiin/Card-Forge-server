@@ -1,7 +1,7 @@
 import { DataSource, Repository } from "typeorm";
 import { User } from "../schema/entity.schema";
 import { Injectable } from "@nestjs/common";
-
+@Injectable()
 export class UserRepository{
     private readonly userRepo: Repository<User>;
     constructor(private readonly dataSource: DataSource){

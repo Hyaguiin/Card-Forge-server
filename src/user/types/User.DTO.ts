@@ -1,4 +1,4 @@
-export type User = {
+export type UserDto = {
     name: string;
     secondname: string;
     email: string;
@@ -10,5 +10,5 @@ export type User = {
 
 
 export type UserDataResponse = {
-    Data: User[];
+    Data: UserDto[];
 }
