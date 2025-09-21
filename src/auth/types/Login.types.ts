@@ -1,8 +1,10 @@
 export type LoginDTO = {
+    id?: number
     email: string;
     senha: string;
 }
 
 export type LoginResponse = {
-    Data: LoginDTO[];
+   user: LoginDTO; // você está retornando um objeto, não array
+    token: string;
 }
