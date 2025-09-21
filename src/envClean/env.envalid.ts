@@ -11,6 +11,7 @@ const env = cleanEnv(process.env,{
     JWT_SECRET: str({desc:"Token jwt"}),
     JWT_REFRESH: str({desc:"Refresh do Token jwt"}),
     ALLOWED_DOMAINS: str({desc: "Dominios para o cors"}),
+    NODE_ENV: str({choices: ['development', 'production', 'test']}),
 })
 
 export default env;

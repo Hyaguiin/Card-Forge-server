@@ -2,7 +2,7 @@ import { DataSource, Repository } from "typeorm";
 import { User } from "../schema/entity.schema";
 import { Injectable } from "@nestjs/common";
 
-export class UserService{
+export class UserRepository{
     private readonly userRepo: Repository<User>;
     constructor(private readonly dataSource: DataSource){
         this.userRepo = this.dataSource.getRepository(User);

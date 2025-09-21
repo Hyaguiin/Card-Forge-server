@@ -5,7 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CardModule } from './card/card.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import env from "../src//.env/envalid.env"
+import { jwtService } from './jwt/jwt.utils';
+import env from './envClean/env.envalid';
 
 const devlopment = env.NODE_ENV == "development";
 const production = env.NODE_ENV == "production";
@@ -23,7 +24,7 @@ const production = env.NODE_ENV == "production";
   //services
 ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, jwtService],
   
 })
 export class AppModule {}
