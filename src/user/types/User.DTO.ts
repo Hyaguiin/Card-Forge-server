@@ -4,8 +4,8 @@ export type UserDto = {
     email: string;
     age: number;
     password: string;
-    lastLogged: Date;
-    isLogged: boolean;
+    lastLogged?: Date;
+    isLogged?: boolean;
 }
 
 
