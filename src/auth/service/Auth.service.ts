@@ -5,6 +5,7 @@ import { RegisterDTO } from "../types/Register.types";
 import { UserDataResponse, UserDto } from "src/user/types/User.DTO";
 import { LoginDTO, LoginResponse } from "../types/Login.types";
 import { jwt_payload } from "src/jwt/jwt.payload";
+import { missingDataLogin, missingDataRegister } from "../handler/MissingData";
 
 @Injectable()
 export class AuthService{
@@ -13,6 +14,7 @@ export class AuthService{
 
     register = async(data: RegisterDTO): Promise<RegisterDTO>=>{
         try{
+            missingDataRegister(data);
             const userResponse: UserDataResponse = await this.userService.createUser(data);
             const user: UserDto = userResponse.Data[0];
             return user;
@@ -26,6 +28,7 @@ export class AuthService{
 
    login = async (data: LoginDTO): Promise<LoginResponse> => {
   try {
+    missingDataLogin(data);
     if (!data.id) throw new Error(`Usuário não encontrado`);
     const userResponse: UserDataResponse = await this.userService.getUserById(data.id);
     const userData = userResponse.Data[0];

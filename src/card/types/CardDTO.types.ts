@@ -6,6 +6,7 @@ export type CardDTO = {
     attack: number;
     defense: number;
     image: string | null;
+    type: string;
 }
 
 
