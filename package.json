@@ -28,6 +28,7 @@
     "axios": "^1.12.2",
     "bcrypt": "^6.0.0",
     "classnames": "^2.5.1",
+    "cloudinary": "^2.7.0",
     "cookie": "^1.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",

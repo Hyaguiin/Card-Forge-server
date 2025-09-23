@@ -6,6 +6,8 @@ import { CardModule } from './card/card.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { jwtService } from './jwt/jwt.utils';
+import { AuthMiddleware } from './middleware/Auth.middleware';
+import { CloudinaryService } from './cloudinary';
 import env from './envClean/env.envalid';
 
 //const devlopment = env.NODE_ENV == "development";
@@ -24,7 +26,8 @@ import env from './envClean/env.envalid';
   //services
 ],
   controllers: [AppController],
-  providers: [AppService, jwtService],
+  providers: [AppService, jwtService, AuthMiddleware, CloudinaryService],
+  exports: [jwtService, AuthMiddleware, CloudinaryService]
   
 })
 export class AppModule {}

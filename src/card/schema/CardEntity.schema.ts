@@ -22,6 +22,9 @@ export class Card {
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     createdAt: Date;
 
+    @Column('enum',{enum: ['magic', 'warrior', 'trap', 'spell']})
+    type: string;
+    
     @JoinColumn({name: 'userId'})
     @OneToMany(()=> User, user => user.cards)
     user: User;

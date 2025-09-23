@@ -12,6 +12,10 @@ const env = cleanEnv(process.env,{
     JWT_REFRESH: str({desc:"Refresh do Token jwt"}),
     ALLOWED_DOMAINS: str({desc: "Dominios para o cors"}),
     NODE_ENV: str({choices: ['development', 'production', 'test']}),
+    CLOUDINARY_API_KEY: str({desc: "Chave da api cloudinary"}),
+    CLOUDINARY_API_SECRET: str({desc: "Segredo da api cloudinary"}),
+    CLOUDNARY_URL:  str({desc: "Url da api cloudinary"}),
+    CLOUDINARY_NAME: str({desc: "Nome da cloud cloudinary"}),
 })
 
 export default env;
