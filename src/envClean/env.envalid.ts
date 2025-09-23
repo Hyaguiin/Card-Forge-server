@@ -1,4 +1,5 @@
 import {str, bool, port, cleanEnv} from 'envalid';
+import 'dotenv/config';
 
 const env = cleanEnv(process.env,{
     DB_HOST: str({desc: "Host do Banco"}),

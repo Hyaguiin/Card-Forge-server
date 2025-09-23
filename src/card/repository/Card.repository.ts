@@ -1,12 +1,13 @@
 import { Card } from "../schema/CardEntity.schema";
 import { DataSource, Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from "@nestjs/typeorm";
 @Injectable()
 export class CardRepository{
-    private readonly repo: Repository<Card>;
-    constructor(private readonly dataSouce: DataSource){
-        this.repo = this.dataSouce.getRepository(Card);
-    }
+       constructor(
+    @InjectRepository(Card)
+    private readonly repo: Repository<Card>,
+  ) {}
 
     createCard = async(dataSource: Partial<Card>): Promise<Card> => {
         const card = await this.repo.create(dataSource);

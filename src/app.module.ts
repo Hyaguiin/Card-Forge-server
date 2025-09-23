@@ -7,8 +7,10 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { jwtService } from './jwt/jwt.utils';
 import { AuthMiddleware } from './middleware/Auth.middleware';
-import { CloudinaryService } from './cloudinary';
+import { CloudinaryService } from './cloudinary/index';
 import env from './envClean/env.envalid';
+import { CardService } from './card/service/Card.service';
+import { CardRepository } from './card/repository/Card.repository';
 
 //const devlopment = env.NODE_ENV == "development";
 //const production = env.NODE_ENV == "production";
@@ -26,8 +28,8 @@ import env from './envClean/env.envalid';
   //services
 ],
   controllers: [AppController],
-  providers: [AppService, jwtService, AuthMiddleware, CloudinaryService],
-  exports: [jwtService, AuthMiddleware, CloudinaryService]
+  providers: [AppService, jwtService, AuthMiddleware, CloudinaryService, CardService],
+  exports: [jwtService, AuthMiddleware, CloudinaryService, CardService]  //vamos usar card para as demais lógicas de venda;
   
 })
 export class AppModule {}
