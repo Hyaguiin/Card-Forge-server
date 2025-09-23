@@ -2,15 +2,18 @@ import * as bcrypt from 'bcrypt';
 
 export const hashPasswor = async(password: string, salt?: string):Promise<string>=>{
     try{
-        if(!salt) throw new Error(``);
-        let hashPassw = await bcrypt.hash(password, salt);
-        return hashPassw;
-        
+        let salt = await bcrypt.genSalt(10);
+        let passwordDecode = await bcrypt.hash(password, salt);
+        password = passwordDecode;
+        console.log(`Senha hash:${passwordDecode} ` );
+        return passwordDecode;
     }catch(err){
         throw err;
     }
 }
 
+
+/*
     export const genSalt = async(salt: string):Promise<string> =>{
         try{
             let salt = await bcrypt.genSalt(10);
@@ -18,4 +21,4 @@ export const hashPasswor = async(password: string, salt?: string):Promise<string
         }catch(err){
         throw err;
     }
-    }
+    }*/
