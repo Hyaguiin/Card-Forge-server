@@ -3,8 +3,10 @@ import { CardService } from './Card.service';
 import { CardDTO } from '../types/CardDTO.types';
 @Injectable()
 export class CardBattle {
-  constructor(private readonly card_Service: CardService) {}
-  randomCard = async (): Promise<CardDTO[]> => {
+  constructor(private readonly card_Service: CardService) {
+    
+  }
+  randomCardFive = async (): Promise<CardDTO[]> => {
     let randomCardsArray: CardDTO[] = [];
     try {
       const card = await this.card_Service.getAllCards();
@@ -24,11 +26,54 @@ export class CardBattle {
       }
       throw err;
     }
-
-    
   };
 
-    
+  getRandomCard = async(): Promise<CardDTO>=>{
+    try{
+      const card = await this.card_Service.getAllCards();
+      const cardResponse = card;
+      const randomCard = Math.floor(Math.random() * card.length);
+      return cardResponse[randomCard];  
+    }catch (err) {
+      if (err instanceof Error) {
+        throw new Error(`Error: ${err.message}`);
+      }
+      throw err;
+    }
+  }
+
+
+
+   getCardByRound = async (rounds: number[]): Promise<CardDTO[]> => {
+  const first_round: number = rounds[0]; 
+  const rest_rounds: number[] = rounds.slice(1); // todos os rounds seguintes
+
+  const cardsArray: CardDTO[] = [];
+
+  try {
+    if (isNaN(first_round)) {
+      throw new Error(`O first_round deve ser um número`);
+    }
+
+    if (rounds.length === 1 && first_round === 1) {
+      const firstCards = await this.randomCardFive(); 
+      cardsArray.push(...firstCards);
+    }
+
+    for (const round of rest_rounds) {
+      if (isNaN(round)) {
+        throw new Error(`Round inválido: ${round}`);
+      }
+      const singleCard = await this.getRandomCard();
+      cardsArray.push(singleCard);
+    }
+
+    return cardsArray;
+
+  } catch (err) {
+    throw new Error(`Erro: ${(err as Error).message}`);
+  }
+};
 
 }
 
