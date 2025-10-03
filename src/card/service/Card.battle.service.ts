@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CardService } from './Card.service';
+import { UserService } from 'src/user/service/User.service';
 import { CardDTO } from '../types/CardDTO.types';
 @Injectable()
 export class CardBattle {
+  private readonly user_service: UserService;
   constructor(private readonly card_Service: CardService) {
     
   }
@@ -40,13 +42,13 @@ export class CardBattle {
       }
       throw err;
     }
-  }
+  };
 
 
 
    getCardByRound = async (rounds: number[]): Promise<CardDTO[]> => {
   const first_round: number = rounds[0]; 
-  const rest_rounds: number[] = rounds.slice(1); // todos os rounds seguintes
+  const rest_rounds: number[] = rounds.slice(1); 
 
   const cardsArray: CardDTO[] = [];
 
@@ -75,6 +77,20 @@ export class CardBattle {
   }
 };
 
-}
+  startBattle = async(rounds: number[], userId: number): Promise<CardDTO[]>=>{
+      let round: number[] = rounds;
+      let rest_rounds: number[] = round.slice(1);
+    try{
+      const users = await this.user_service.getUserById(userId);
+      
 
+    }catch(err){
+      if (err instanceof Error) {
+        throw new Error(`Error: ${err.message}`);
+      }
+      throw err;
+    }
+  }
+
+}
 
